@@ -35,6 +35,7 @@ function FadeInSection({ children, className = "" }) {
 // Простий автоскрол по горизонталі (для стрічки фото)
 function AutoScrollRow({ children, speed = 0.4 }) {
   const containerRef = useRef(null);
+  const stopRef = useRef(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -46,8 +47,7 @@ function AutoScrollRow({ children, speed = 0.4 }) {
     const step = (now) => {
       const dt = now - last;
       last = now;
-      // плавний автоскрол; коли кінець — повертаємось на початок
-      el.scrollLeft += speed * dt;
+      if (!stopRef.current) el.scrollLeft += speed * dt;
       const maxScroll = el.scrollWidth - el.clientWidth - 1;
       if (el.scrollLeft >= maxScroll) el.scrollLeft = 0;
       rafId = requestAnimationFrame(step);
@@ -56,12 +56,21 @@ function AutoScrollRow({ children, speed = 0.4 }) {
     return () => cancelAnimationFrame(rafId);
   }, [speed]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) stopRef.current = true;
+  }, []);
+
   return (
     <div
       ref={containerRef}
       className="scroll-gallery"
       style={{ overflowX: "auto", whiteSpace: "nowrap", scrollBehavior: "auto" }}
       id="auto-scroll-gallery"
+      onMouseEnter={() => (stopRef.current = true)}
+      onMouseLeave={() => (stopRef.current = false)}
+      onFocus={() => (stopRef.current = true)}
+      onBlur={() => (stopRef.current = false)}
     >
       {children}
     </div>
@@ -150,7 +159,7 @@ function ScrollGallery() {
     <AutoScrollRow>
       {images.map((src, i) => (
         <div className="scroll-item" key={i} style={{ display: "inline-block" }}>
-          <img src={src} alt={i === 0 || i === 5 ? "90s vintage watches" : ""} />
+          <img src={src} alt={i === 0 || i === 5 ? "90s vintage watches" : "vintage watch"} loading="lazy" />
         </div>
       ))}
     </AutoScrollRow>
@@ -167,7 +176,7 @@ function InstagramLink() {
       aria-label="Instagram"
       title="Відкрити Instagram"
     >
-      <img src="images/icon.png" alt="Instagram" />
+      <img src="images/icon.png" alt="Instagram" loading="lazy" width="32" height="32" />
     </a>
   );
 }
@@ -175,7 +184,7 @@ function InstagramLink() {
 function AboutSection() {
   return (
     <FadeInSection className="about-section">
-      <img src="images/maria1.JPEG" alt="" className="about-image-round" />
+      <img src="images/maria1.JPEG" alt="Maria, owner of the shop" className="about-image-round" loading="lazy" width="320" height="320" />
       <p>
         Ми локальна крамничка вінтажних годинників з душею та характером зі Львова,
         заснована у 2019 році
