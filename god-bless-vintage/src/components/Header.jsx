@@ -27,14 +27,16 @@ function FadeInSection({ children, className = "" }) {
 
 function Header() {
   return (
-    <header className="header landing" id="top">
+  <header className="header landing" id="top">
+    <div className="container">
       <FadeInSection>
         <h1>GOD BLESS VINTAGE</h1>
-        <p>створено часом</p>
-        <p>presented in Budapest, Prague, Warsaw</p>
+        <p className="subtitle">створено часом</p>
+        <p className="subtitle">presented in Budapest, Prague, Warsaw</p>
       </FadeInSection>
-    </header>
-  );
+    </div>
+  </header>
+);
 }
 
 export default Header;

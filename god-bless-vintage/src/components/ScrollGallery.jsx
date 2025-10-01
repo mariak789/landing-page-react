@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 
-// простий автоскрол по горизонталі
-function AutoScrollRow({ children, speed = 0.4 }) {
+/** Простий автоскрол по горизонталі з паузами на hover/focus/drag і повагою до reduced motion */
+function AutoScrollRow({ children, speed = 0.10 }) {
   const containerRef = useRef(null);
   const stopRef = useRef(false);
 
@@ -15,11 +15,16 @@ function AutoScrollRow({ children, speed = 0.4 }) {
     const step = (now) => {
       const dt = now - last;
       last = now;
-      if (!stopRef.current) el.scrollLeft += speed * dt;
-      const maxScroll = el.scrollWidth - el.clientWidth - 1;
-      if (el.scrollLeft >= maxScroll) el.scrollLeft = 0;
+
+      if (!stopRef.current) {
+        el.scrollLeft += speed * dt;
+        const maxScroll = el.scrollWidth - el.clientWidth - 1;
+        if (el.scrollLeft >= maxScroll) el.scrollLeft = 0;
+      }
+
       rafId = requestAnimationFrame(step);
     };
+
     rafId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(rafId);
   }, [speed]);
@@ -62,17 +67,24 @@ function ScrollGallery() {
   );
 
   return (
-    <AutoScrollRow>
-      {images.map((src, i) => (
-        <div className="scroll-item" key={i} style={{ display: "inline-block" }}>
-          <img
-            src={src}
-            alt={i === 0 || i === 5 ? "90s vintage watches" : "vintage watch"}
-            loading="lazy"
-          />
+    <section id="gallery">
+      <div className="container">
+        <div className="scroll-gallery-wrap">
+          <AutoScrollRow speed={0.10}>
+            {images.map((src, i) => (
+              <div className="scroll-item" key={i} style={{ display: "inline-block" }}>
+                <img
+                  src={src}
+                  alt={i === 0 || i === 5 ? "90s vintage watches" : "vintage watch"}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </AutoScrollRow>
         </div>
-      ))}
-    </AutoScrollRow>
+      </div>
+    </section>
   );
 }
 

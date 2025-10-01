@@ -15,6 +15,7 @@ function useFadeInOnView() {
   }, []);
   return ref;
 }
+
 function FadeInSection({ children, className = "" }) {
   const ref = useFadeInOnView();
   return (
@@ -26,26 +27,35 @@ function FadeInSection({ children, className = "" }) {
 
 function AboutSection() {
   return (
-    <FadeInSection className="about-section">
-      <img
-        src="images/maria1.JPEG"
-        alt="Maria, owner of the shop"
-        className="about-image-round"
-        loading="lazy"
-        width="320"
-        height="320"
-      />
-      <p>
-        Ми локальна крамничка вінтажних годинників з душею та характером зі Львова,
-        заснована у 2019 році
-      </p>
-      <p>
-        У нашому затишному корнері представлені вінтажні та антикварні годинники з
-        багатьох куточків світу, автентична швейцарська механіка, елегантні годинники
-        французької, данської та інших європейських мануфактур. Чому саме вінтаж?
-        Вінтаж - про характер, неповторний вайб та якість, перевірені часом.
-      </p>
-    </FadeInSection>
+    <section className="about-section" id="about" aria-label="About the shop">
+      <div className="container">
+        <FadeInSection>
+          <div className="grid">
+            <img
+              src="images/maria1.JPEG"
+              alt="Maria, owner of the shop"
+              className="about-image-round"
+              loading="lazy"
+              decoding="async"
+              width="320"
+              height="420"
+            />
+            <div className="measure">
+              <p>
+                Ми локальна крамничка вінтажних годинників з душею та характером зі Львова,
+                заснована у 2019 році.
+              </p>
+              <p>
+                У нашому затишному корнері представлені вінтажні та антикварні годинники з
+                багатьох куточків світу, автентична швейцарська механіка, елегантні годинники
+                французької, данської та інших європейських мануфактур. Чому саме вінтаж?
+                Вінтаж — про характер, неповторний вайб та якість, перевірені часом.
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
+    </section>
   );
 }
 

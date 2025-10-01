@@ -103,12 +103,40 @@ header.header.landing .container { text-align: center; }
   box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
 
+/* Приховати горизонтальний скролбар у всіх браузерах */
+.scroll-gallery,
+.review-track {
+  scrollbar-width: none;   /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-gallery::-webkit-scrollbar,
+.review-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.faq-section {
+  text-align: center;
+}
+
+.faq-list {
+  max-width: 720px; /* щоб блок не розтягувався на всю ширину */
+  margin: 0 auto;
+  text-align: left; /* але сам текст відповідей вирівняний вліво */
+}
+
+.faq-item{
+  padding: 8px 0 16px;
+  margin: 12px 0 20px;
+}
+
 .faq-answer {
   overflow: hidden;
   transition: grid-template-rows .35s ease, opacity .35s ease;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
+  padding: 0 24px;
 }
 .faq-item.open .faq-answer {
   grid-template-rows: 1fr;
@@ -117,9 +145,9 @@ header.header.landing .container { text-align: center; }
 .faq-answer > * {
   min-height: 0; /* для плавного grid-акордеону */
 }
- .faq-question{
+.faq-question{
    width: 100%;
-   text-align: left;
+   text-align: center;
    background: none;
    color: #fff;
    border: 0;
@@ -147,6 +175,10 @@ header.header.landing .container { text-align: center; }
 @media (min-width: 960px){ .review-slide{ flex-basis:60%; } }
 .review-slide img{ display:block; width:100%; height:auto; border-radius:12px; }
 
+.review-slider-section {
+  padding-top: 20px;  /* замість великого відступу зверху */
+}
+
 /* Instagram floating (якщо плаваюча кнопка) */
 .insta-link{
   position:fixed;
@@ -163,4 +195,29 @@ header.header.landing .container { text-align: center; }
 @media (prefers-reduced-motion: reduce) {
   .fade-in { transition: none; }
   .scroll-gallery { scroll-behavior: auto !important; }
+}
+
+.site-footer {
+  background: #111;          /* темніший фон */
+  color: var(--muted);
+  text-align: center;
+  padding: 32px 16px;
+  margin-top: 40px;          /* відступ зверху */
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.site-footer a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: #aaa;
 }

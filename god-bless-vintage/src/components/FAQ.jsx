@@ -38,15 +38,20 @@ function FAQ() {
     <section className="faq-section" ref={wrapperRef}>
       <h2>Поширені запитання:</h2>
       {items.map((it, i) => (
-        <div className="faq-item" key={i}>
+        <div className={`faq-item ${open === i ? "open" : ""}`} key={i}>
           <button
             className="faq-question"
             aria-expanded={open === i}
+            aria-controls={`faq-panel-${i}`}
             onClick={() => setOpen((o) => (o === i ? -1 : i))}
           >
             {it.q}
           </button>
-          <div className="faq-answer" style={{ display: open === i ? "block" : "none" }}>
+        <div
+            id={`faq-panel-${i}`}
+            className="faq-answer"
+            hidden={open !== i}
+        >
             <p>{it.a}</p>
           </div>
         </div>
