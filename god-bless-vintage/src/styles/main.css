@@ -16,6 +16,21 @@
   object-fit: cover;
 }
 
+.faq-answer {
+  overflow: hidden;
+  transition: grid-template-rows .35s ease, opacity .35s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.faq-item.open .faq-answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.faq-answer > * {
+  min-height: 0; /* для плавного grid-акордеону */
+}
+
 /* Review slider */
 .review-slider { position: relative; }
 .review-track { -webkit-overflow-scrolling: touch; }
