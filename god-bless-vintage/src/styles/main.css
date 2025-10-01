@@ -1,5 +1,5 @@
 /* Fade-in utility */
-.fade-in { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
 /* Horizontal auto-scroll gallery */
