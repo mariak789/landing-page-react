@@ -1,0 +1,59 @@
+.review-slider-section {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.review-slider-section h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #5C4033;
+}
+
+
+.review-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.review-slider::-webkit-scrollbar {
+  display: none;
+}
+
+
+.review-slide {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  scroll-snap-align: center;
+  transition: transform 0.3s ease;
+}
+
+.review-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.review-slide:hover {
+  transform: scale(1.05);
+}
+.review-slider {
+  -webkit-overflow-scrolling: touch; 
+  overflow-x: auto;
+  touch-action: pan-x;              
+}
