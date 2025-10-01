@@ -44,7 +44,7 @@ function AutoSlider({ items = [], intervalMs = 2500 }) {
       >
         {items.map((src, i) => (
           <div className="review-slide" key={i} style={{ flex: "0 0 85%", scrollSnapAlign: "start" }}>
-            <img src={src} alt={`Відгук ${i + 1}`} />
+            <img src={src} alt={`Відгук ${i + 1}`} loading='lazy' />
           </div>
         ))}
       </div>
