@@ -2,6 +2,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 img { max-width: 100%; height: auto; display: block; }
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 72px; }
 
 :root{
   --page-max: 1120px;
@@ -29,9 +31,28 @@ body{
 }
 
 /* Відступи секцій */
-section{ padding: clamp(32px, 6vw, 56px) 0; }
+section{ padding: clamp(40px, 6vw, 72px) 0; }
+.measure { max-width: 70ch; }
+.section-title { text-align: center; margin-bottom: 20px; }
+.section-body { display: flex; justify-content: center; }
 
-/* Герой */
+/* About layout */
+.about-section .grid{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+.about-image-round{
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+@media (max-width: 720px){
+  .about-section .grid{ grid-template-columns: 1fr; }
+}
+
+/* Hero */
 header.header.landing{ padding: clamp(48px, 8vw, 90px) 0 16px; }
 h1{
   font-size: clamp(36px, 6vw, 64px);
@@ -46,32 +67,40 @@ h2{
 }
 p{ margin: 8px 0; color: var(--muted); }
 
-/* Обмеження ширини текстових блоків, щоб не розтікались */
-.measure { max-width: 72ch; }
+/* Hero alignment */
+header.header.landing .container { text-align: center; }
+.header .subtitle { opacity:.85; margin: 6px 0; }
+
 
 /* Трохи повітря внизу сторінки, щоб Instagram-кнопка не перекривала текст */
 .page-bottom-space { padding-bottom: 72px; }
-
-/* Fade-in утиліти (якщо ще не додала) */
-.fade-in { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
-.fade-in.visible { opacity: 1; transform: none; }
 
 /* Fade-in utility */
 .fade-in { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
 /* Horizontal auto-scroll gallery */
-.scroll-gallery {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: auto;
-  scrollbar-width: thin;
+.scroll-gallery{
+  display:block;
+  overflow-x:auto;
+  white-space:nowrap;
+  scroll-behavior:auto;
+  scrollbar-width:thin;
+  padding:12px 0;
 }
-.scroll-gallery .scroll-item img {
-  display: block;
-  height: 200px; /* підбери під свій дизайн */
-  object-fit: cover;
+.scroll-gallery-wrap{ display:flex; justify-content:center; }
+.scroll-gallery .scroll-item{ display:inline-block; margin-right:8px; }
+.scroll-gallery .scroll-item img{
+  display:block;
+  height:clamp(140px, 22vw, 220px);
+  width:auto;
+  object-fit:cover;
+  border-radius:10px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.scroll-gallery .scroll-item img:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
 
 .faq-answer {
@@ -88,18 +117,46 @@ p{ margin: 8px 0; color: var(--muted); }
 .faq-answer > * {
   min-height: 0; /* для плавного grid-акордеону */
 }
+ .faq-question{
+   width: 100%;
+   text-align: left;
+   background: none;
+   color: #fff;
+   border: 0;
+   padding: 10px 0;
+   font-size: 20px;
+   font-weight: 600;
+   cursor: pointer;
+ }
+.faq-question:focus-visible{
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
 
 /* Review slider */
 .review-slider { position: relative; }
-.review-track { -webkit-overflow-scrolling: touch; }
-.review-slide img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.review-track{
+  display:flex;
+  gap:1rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding:4px 0 8px;
+}
+.review-slide{ flex:0 0 85%; scroll-snap-align:start; }
+@media (min-width: 960px){ .review-slide{ flex-basis:60%; } }
+.review-slide img{ display:block; width:100%; height:auto; border-radius:12px; }
 
 /* Instagram floating (якщо плаваюча кнопка) */
-.insta-link {
-  position: fixed; right: 16px; bottom: 16px; z-index: 50;
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 48px; height: 48px; border-radius: 50%; background: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+.insta-link{
+  position:fixed;
+  right:calc(16px + env(safe-area-inset-right));
+  bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:50;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:48px; height:48px; border-radius:50%; background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 
 /* Reduced motion support */
