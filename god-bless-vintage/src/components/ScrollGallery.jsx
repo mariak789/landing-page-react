@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
 
-/** Простий автоскрол по горизонталі з паузами на hover/focus/drag і повагою до reduced motion */
 function AutoScrollRow({ children, speed = 0.10 }) {
   const containerRef = useRef(null);
   const stopRef = useRef(false);

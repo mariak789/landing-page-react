@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-// локальний хук для fade-in
 function useFadeInOnView() {
   const ref = useRef(null);
   useEffect(() => {

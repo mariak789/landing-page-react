@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-// локальні fade-in утиліти
 function useFadeInOnView() {
   const ref = useRef(null);
   useEffect(() => {

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
 
-/* локальний fade-in хук */
 function useFadeInOnView() {
   const ref = useRef(null);
   useEffect(() => {
@@ -51,7 +50,6 @@ function Testimonials() {
     wrapRef.current?.scrollBy({ left: pageWidth(), behavior: "smooth" });
   };
 
-  // Arrow keys support
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowLeft") scrollLeft();
@@ -68,7 +66,7 @@ function Testimonials() {
         <FadeInSection>
           <h2 className="section-title" id="testimonials-title">Відгуки наших клієнтів 💌</h2>
 
-          {/* стилі прямо тут */}
+          {/* inline styles */}
           <style>{`
             .review-slider { position: relative; }
             .review-slider::before,

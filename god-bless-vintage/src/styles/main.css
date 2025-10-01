@@ -23,14 +23,14 @@ body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Контейнер для всіх секцій */
+/* Container for all sections */
 .container{
   max-width: var(--page-max);
   padding-inline: var(--pad);
   margin-inline: auto;
 }
 
-/* Відступи секцій */
+/* Sections paddings */
 section{ padding: clamp(40px, 6vw, 72px) 0; }
 .measure { max-width: 70ch; }
 .section-title { text-align: center; margin-bottom: 20px; }
@@ -52,7 +52,7 @@ section{ padding: clamp(40px, 6vw, 72px) 0; }
   .about-section .grid{ grid-template-columns: 1fr; }
 }
 
-/* Hero */
+/* Header */
 header.header.landing{ padding: clamp(48px, 8vw, 90px) 0 16px; }
 h1{
   font-size: clamp(36px, 6vw, 64px);
@@ -67,19 +67,18 @@ h2{
 }
 p{ margin: 8px 0; color: var(--muted); }
 
-/* Hero alignment */
+/* Header alignment */
 header.header.landing .container { text-align: center; }
 .header .subtitle { opacity:.85; margin: 6px 0; }
 
 
-/* Трохи повітря внизу сторінки, щоб Instagram-кнопка не перекривала текст */
 .page-bottom-space { padding-bottom: 72px; }
 
-/* Fade-in utility */
+
 .fade-in { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
-/* Horizontal auto-scroll gallery */
+
 .scroll-gallery{
   display:block;
   overflow-x:auto;
@@ -92,7 +91,7 @@ header.header.landing .container { text-align: center; }
 .scroll-gallery .scroll-item{ display:inline-block; margin-right:8px; }
 .scroll-gallery .scroll-item img{
   display:block;
-  height:clamp(140px, 22vw, 220px);
+  height:clamp(240px, 26vw, 300px);
   width:auto;
   object-fit:cover;
   border-radius:10px;
@@ -103,7 +102,7 @@ header.header.landing .container { text-align: center; }
   box-shadow:0 8px 24px rgba(0,0,0,.25);
 }
 
-/* Приховати горизонтальний скролбар у всіх браузерах */
+
 .scroll-gallery,
 .review-track {
   scrollbar-width: none;   /* Firefox */
@@ -120,9 +119,9 @@ header.header.landing .container { text-align: center; }
 }
 
 .faq-list {
-  max-width: 720px; /* щоб блок не розтягувався на всю ширину */
+  max-width: 720px; 
   margin: 0 auto;
-  text-align: left; /* але сам текст відповідей вирівняний вліво */
+  text-align: left; 
 }
 
 .faq-item{
@@ -143,7 +142,7 @@ header.header.landing .container { text-align: center; }
   opacity: 1;
 }
 .faq-answer > * {
-  min-height: 0; /* для плавного grid-акордеону */
+  min-height: 0; 
 }
 .faq-question{
    width: 100%;
@@ -176,10 +175,9 @@ header.header.landing .container { text-align: center; }
 .review-slide img{ display:block; width:100%; height:auto; border-radius:12px; }
 
 .review-slider-section {
-  padding-top: 20px;  /* замість великого відступу зверху */
+  padding-top: 20px;  
 }
 
-/* Instagram floating (якщо плаваюча кнопка) */
 .insta-link{
   position:fixed;
   right:calc(16px + env(safe-area-inset-right));
@@ -198,11 +196,11 @@ header.header.landing .container { text-align: center; }
 }
 
 .site-footer {
-  background: #111;          /* темніший фон */
+  background: #111;          
   color: var(--muted);
   text-align: center;
   padding: 32px 16px;
-  margin-top: 40px;          /* відступ зверху */
+  margin-top: 40px;          
   border-top: 1px solid var(--border);
 }
 
